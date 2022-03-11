@@ -1,5 +1,8 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {StyleSheet, Text, View, Clipboard, Platform} from 'react-native';
+import {StyleSheet, Text, View, Platform} from 'react-native';
+import * as Clipboard from 'expo-clipboard';
+import Toast from 'react-native-root-toast';
+
 import Button from './components/Button';
 import Keyboard, {SpecialKeyboardKeys} from './components/Keyboard';
 import TextBlock, {TextBlockState} from './components/TextBlock';
@@ -38,7 +41,7 @@ const GameScreen = () => {
 
     guessList.forEach(word => {
       word.split('').forEach(letter => {
-        console.log({letter});
+        // console.log({letter});
         if (!wordToGuess.current.includes(letter)) {
           list.push(letter);
         }
@@ -95,6 +98,13 @@ const GameScreen = () => {
     return getWordleEmoji(wordToGuess.current, guessList);
   }, [gameOver, guessList]);
 
+  const copyToClipboard = () => {
+    Clipboard.setString(wordleEmoji);
+    Toast.show('Copied to clipboard!', {
+      duration: Toast.durations.LONG,
+    });
+  };
+
   return (
     <View style={styles.fg1}>
       {BOARD_TEMPLATE.map((row, rowIndex) => {
@@ -144,7 +154,7 @@ const GameScreen = () => {
             <View style={styles.buttonRow}>
               <Button
                 cta="Copy Score"
-                onPress={() => Clipboard.setString(wordleEmoji)}
+                onPress={copyToClipboard}
               />
               <View style={styles.buttonSpacer} />
               <Button cta="Play Again" onPress={() => setGameOver(false)} />

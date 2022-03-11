@@ -5,7 +5,7 @@ const ScreenHeader = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Wordle</Text>
-      <Text style={styles.subtitle}>react native</Text>
+      <Text style={styles.subtitle}>2 words per day! We promise!</Text>
     </View>
   );
 };

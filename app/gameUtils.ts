@@ -1,9 +1,9 @@
 import fiveLetterWords from './constants/fiveLetterWords.json';
-import {MAX_GUESSES} from './constants/gameConstants';
+import {MAX_GUESSES, MAX_BOARD_SIZE} from './constants/gameConstants';
 
 export const getInitialBoard = (): string[][] => {
   const board: string[][] = [];
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < MAX_BOARD_SIZE; i++) {
     board.push(new Array(5).fill(''));
   }
 

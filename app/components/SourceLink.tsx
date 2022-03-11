@@ -1,7 +1,9 @@
 import React from 'react';
 import {Linking, Platform, StyleSheet, Text, View} from 'react-native';
+import Constants from 'expo-constants';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const HOME_URL = 'https://github.com/LonelyCpp/react-native-wordle';
+const HOME_URL = 'https://github.com/AceLords-Apps-Gaming/react-native-wordle';
 
 const SourceLink = () => {
   return (
@@ -14,7 +16,7 @@ const SourceLink = () => {
         onPress={
           Platform.OS !== 'web' ? () => Linking.openURL(HOME_URL) : undefined
         }>
-        (github)
+        <MaterialCommunityIcons name="github" size={40} color="white" />
       </Text>
     </View>
   );
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 12,
     top: 16,
+    paddingTop: Constants.statusBarHeight,
   },
   subtitle: {
     color: '#5998c5',
